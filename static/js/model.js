@@ -1,4 +1,5 @@
-const { listMock } = require('./constant');
+const { getUserList } = require('./constant');
+
 
 const modelState = {
   currentList: [],
@@ -17,7 +18,7 @@ exports.getListBySnippet = function(snippet = '') {
   if (!snippet) return;
 
   const snippetKey = snippet.substring(1);
-  const filterList = listMock.filter(item => item.indexOf(snippetKey) > -1);
+  const filterList = getUserList().filter(item => item.indexOf(snippetKey) > -1);
 
   $('#inline_mention').empty();
 
@@ -32,7 +33,7 @@ exports.getListBySnippet = function(snippet = '') {
  * @remark 这里应该还有缓存策略
  */
 exports.getListAndFillList = function() {
-  fillMentionList(listMock);
+  fillMentionList(getUserList());
 }
 
 /**
@@ -40,7 +41,7 @@ exports.getListAndFillList = function() {
  */
 exports.resetListAndFillList = function() {
   $('#inline_mention').empty();
-  fillMentionList(listMock);
+  fillMentionList(getUserList());
 }
 
 /**

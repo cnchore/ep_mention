@@ -12,3 +12,16 @@ exports.listMock = [
   '骑士',
   '圣骑士',
 ];
+
+exports.getUserList = () => {
+  let userList = []
+  try {
+    const historical = parent.parent.clientVars.collab_client_vars.historicalAuthorData;
+    for (const [, {name}] of Object.entries(historical)) {
+      name && userList.push(name)
+    }
+  } catch (error) {
+    userList = []
+  }
+  return userList
+}
